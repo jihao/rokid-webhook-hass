@@ -35,9 +35,9 @@ service: rokid_webhook.audio
 data:
   message: 'http://HASSIO_IP:8123/local/audio.mp3'
 
-service: rokid_webhook.tts
+service: rokid_webhook.asr
 data:
-  message: 'hello 主人'
+  message: '明天天气怎么样'
 ```
 
 ## 参考
