@@ -1,0 +1,8 @@
+{
+    "domain": "rokid_webhook",
+    "name": "rokid webhook",
+    "documentation": "https://developer.rokid.com/docs/rokid-homebase-docs/webhook/",
+    "dependencies": [],
+    "codeowners": [],
+    "requirements": []
+  }

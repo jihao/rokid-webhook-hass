@@ -1,0 +1,23 @@
+# Example services.yaml entry
+
+tts:
+  description: Rokid webhook tts
+  fields:
+    message:
+      description: "播报内容"
+      example: '{"message": "Hello 主人"}'
+
+audio:
+  description: Rokid webhook audio
+  fields:
+    message:
+      description: "音频地址"
+      example: '{"message": "http://HASSIO_IP:8123/local/audio.mp3"}'
+
+asr:
+  description: Rokid webhook asr
+  fields:
+    message:
+      description: "语音控制指令"
+      example: '{"message": "今天天气怎么样"}'
+
