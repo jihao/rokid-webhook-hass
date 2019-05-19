@@ -40,7 +40,12 @@ custom_updater:
  
 * rokid_webhook.tts
  
-Rokid webhook tts, 服务调用时如果指定可选参数，将覆盖configuration.yaml里的默认配置。 Service data example:{"message":"Hello 主人", "webhook_id":"your_overwrite_id", "sn":"device_sn", "roomName":"客厅"}
+```diff
++ 服务调用时如果指定可选参数，将覆盖configuration.yaml里的默认配置。
+
+ Example: {"message":"Hello 主人", "webhook_id":"your_overwrite_id", "sn":"device_sn", "roomName":"客厅"}
+```
+
 
 | 参数          | 类型           | 描述   |示例 |
 | ------------- | ------------- | ------------- | ------------- |
