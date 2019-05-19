@@ -1,23 +1,65 @@
 # Example services.yaml entry
 
 tts:
-  description: Rokid webhook tts
+  description: | 
+    Rokid webhook tts, 服务调用时如果指定可选参数，将覆盖configuration.yaml里的默认配置。
+    Service data example:{"message":"Hello 主人", "webhook_id":"your_overwrite_id", "sn":"device_sn", "roomName":"客厅"}
   fields:
     message:
-      description: "播报内容"
-      example: '{"message": "Hello 主人"}'
-
+      description: "必选* - 播报内容"
+      example: 'Hello 主人'
+    webhook_id:
+      description: "可选 - Webhook地址的标识"
+      example: 'your_very_unique_token'
+    sn:
+      description: "可选 - 若琪序列号"
+      example: 'device_sn'
+    roomName:
+      description: "可选 - 若琪所处的房间"
+      example: '客厅'
+    tag:
+      description: "可选 - 设备标签"
+      example: 'TAG_A'
+    isAll:
+      description: "可选 - 选择所有设备，默认 false"
+      example: 'true'
 audio:
-  description: Rokid webhook audio
+  description: Rokid webhook audio, 服务调用时如果指定可选参数，将覆盖configuration.yaml里的默认配置。
   fields:
     message:
-      description: "音频地址"
-      example: '{"message": "http://HASSIO_IP:8123/local/audio.mp3"}'
-
+      description: "必选* - 音频地址"
+      example: 'http://HASSIO_IP:8123/local/audio.mp3'
+    webhook_id:
+      description: "可选 - Webhook地址的标识"
+      example: 'your_very_unique_token'
+    sn:
+      description: "可选 - 若琪序列号"
+      example: 'device_sn'
+    roomName:
+      description: "可选 - 若琪所处的房间"
+      example: '客厅'
+    tag:
+      description: "可选 - 设备标签"
+      example: 'TAG_A'
+    isAll:
+      description: "可选 - 选择所有设备，默认 false"
 asr:
-  description: Rokid webhook asr
+  description: Rokid webhook asr, 服务调用时如果指定可选参数，将覆盖configuration.yaml里的默认配置。
   fields:
     message:
-      description: "语音控制指令"
-      example: '{"message": "今天天气怎么样"}'
-
+      description: "必选* - 语音控制指令"
+      example: '今天天气怎么样'
+    webhook_id:
+      description: "可选 - Webhook地址的标识"
+      example: 'your_very_unique_token'
+    sn:
+      description: "可选 - 若琪序列号"
+      example: 'device_sn'
+    roomName:
+      description: "可选 - 若琪所处的房间"
+      example: '客厅'
+    tag:
+      description: "可选 - 设备标签"
+      example: 'TAG_A'
+    isAll:
+      description: "可选 - 选择所有设备，默认 false"

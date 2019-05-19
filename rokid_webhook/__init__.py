@@ -17,12 +17,17 @@ CONF_ROKID_ROOMNAME = 'roomName'
 CONF_ROKID_TAG = 'tag'
 CONF_ROKID_ISALL = 'isAll'
 
-VERSION = '0.1.0'
+VERSION = '0.1.1'
 DOMAIN = 'rokid_webhook'
 ATTR_MESSAGE = 'message'
 
 SERVICE_SCHEMA = vol.Schema({
     vol.Required(ATTR_MESSAGE): cv.string,
+    vol.Optional(CONF_WEBHOOK_ID): cv.string,
+    vol.Optional(CONF_ROKID_SN): cv.string,
+    vol.Optional(CONF_ROKID_ROOMNAME): cv.string,
+    vol.Optional(CONF_ROKID_TAG): cv.string,
+    vol.Optional(CONF_ROKID_ISALL, default=False): cv.boolean,
 })
 
 CONFIG_SCHEMA = vol.Schema({
@@ -37,37 +42,30 @@ CONFIG_SCHEMA = vol.Schema({
 
 def setup(hass, config):
     conf = config.get(DOMAIN, {})
-    webhook_id = conf.get(CONF_WEBHOOK_ID)  
-    rokid_sn = conf.get(CONF_ROKID_SN)
-    rokid_roomname = conf.get(CONF_ROKID_ROOMNAME)
-    rokid_tag = conf.get(CONF_ROKID_TAG)
-    rokid_isall = conf.get(CONF_ROKID_ISALL)
     hass.states.set('rokid_webhook.state', 'OK', conf)
     _LOGGER.info("The rokid_webhook component is ready!")
 
-    def send_tts_text(call):
+    def send(call, method):
         message = call.data.get(ATTR_MESSAGE) 
+        webhook_id      = call.data.get(CONF_WEBHOOK_ID)     or conf.get(CONF_WEBHOOK_ID)
+        rokid_sn        = call.data.get(CONF_ROKID_SN)       or conf.get(CONF_ROKID_SN)
+        rokid_roomname  = call.data.get(CONF_ROKID_ROOMNAME) or conf.get(CONF_ROKID_ROOMNAME)
+        rokid_tag       = call.data.get(CONF_ROKID_TAG)      or  conf.get(CONF_ROKID_TAG)
+        rokid_isall     = call.data.get(CONF_ROKID_ISALL)    or conf.get(CONF_ROKID_ISALL) 
         client = rokid_webhook(webhook_id, rokid_sn, rokid_roomname, rokid_tag, rokid_isall)       
         try:
-            message = client.tts(message)
+            message = getattr(client, method)(message)
         except Exception as e:
             _LOGGER.error(e)
+
+    def send_tts_text(call):
+        send(call, "tts")
 
     def send_audio_url(call):
-        message = call.data.get(ATTR_MESSAGE) 
-        client = rokid_webhook(webhook_id, rokid_sn, rokid_roomname, rokid_tag, rokid_isall)       
-        try:
-            message = client.audio(message)
-        except Exception as e:
-            _LOGGER.error(e)
+        send(call, "audio")
 
     def send_asr_text(call):
-        message = call.data.get(ATTR_MESSAGE) 
-        client = rokid_webhook(webhook_id, rokid_sn, rokid_roomname, rokid_tag, rokid_isall)       
-        try:
-            message = client.asr(message)
-        except Exception as e:
-            _LOGGER.error(e)
+        send(call, "asr")
 
     hass.services.register(DOMAIN, 'tts', send_tts_text, schema=SERVICE_SCHEMA)
     hass.services.register(DOMAIN, 'audio', send_audio_url, schema=SERVICE_SCHEMA)
@@ -104,7 +102,7 @@ class rokid_webhook:
             if r.status_code == 200:
                 return
             else:
-                _LOGGER.error(r)
+                _LOGGER.error('status: {}, content: {}'.format(r.status_code, r.content))
         except Exception as e:
             _LOGGER.error(e)
             return False
