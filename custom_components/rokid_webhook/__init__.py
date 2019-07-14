@@ -17,7 +17,7 @@ CONF_ROKID_ROOMNAME = 'roomName'
 CONF_ROKID_TAG = 'tag'
 CONF_ROKID_ISALL = 'isAll'
 
-VERSION = '0.1.1'
+VERSION = '0.1.2'
 DOMAIN = 'rokid_webhook'
 ATTR_MESSAGE = 'message'
 

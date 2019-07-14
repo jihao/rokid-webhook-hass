@@ -1,12 +1,12 @@
 {
     "rokid_webhook": {
-        "version": "0.1.1",
+        "version": "0.1.2",
         "local_location": "/custom_components/rokid_webhook/__init__.py",
-        "remote_location": "https://raw.githubusercontent.com/jihao/rokid-webhook-hass/master/rokid_webhook/__init__.py",
+        "remote_location": "https://raw.githubusercontent.com/jihao/rokid-webhook-hass/master/custom_components/rokid_webhook/__init__.py",
         "visit_repo": "https://github.com/jihao/rokid-webhook-hass",
         "changelog": "https://github.com/jihao/rokid-webhook-hass/releases/latest",
         "resources": [
-            "https://raw.githubusercontent.com/jihao/rokid-webhook-hass/master/rokid_webhook/services.yaml"
+            "https://raw.githubusercontent.com/jihao/rokid-webhook-hass/master/custom_components/rokid_webhook/services.yaml"
         ]
     }
 }
