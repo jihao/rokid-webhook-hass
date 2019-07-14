@@ -4,8 +4,10 @@
 
  在home assistant中使用服务调用若琪webhook实现tts播报, 播放音乐流媒体文件, 执行asr指令。
 
-## 安装 
-* 将 `rokid_webhook` 目录保存到 `config/custom_components/`
+## 安装，方法自选 
+* 手工安装，将 `rokid_webhook` 目录保存到 `config/custom_components/`
+
+* 支持 `HACS`
 
 * 支持 `custome_updater` 
 ```
