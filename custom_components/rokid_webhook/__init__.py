@@ -17,7 +17,7 @@ CONF_ROKID_ROOMNAME = 'roomName'
 CONF_ROKID_TAG = 'tag'
 CONF_ROKID_ISALL = 'isAll'
 
-VERSION = '0.1.2'
+VERSION = '0.1.3'
 DOMAIN = 'rokid_webhook'
 ATTR_MESSAGE = 'message'
 
@@ -42,7 +42,7 @@ CONFIG_SCHEMA = vol.Schema({
 
 def setup(hass, config):
     conf = config.get(DOMAIN, {})
-    hass.states.set('rokid_webhook.state', 'OK', conf)
+    hass.states.set('rokid_webhook.rokid_webhook', VERSION, conf)
     _LOGGER.info("The rokid_webhook component is ready!")
 
     def send(call, method):
