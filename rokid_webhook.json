@@ -1,6 +1,6 @@
 {
     "rokid_webhook": {
-        "version": "0.1.3",
+        "version": "0.1.4",
         "local_location": "/custom_components/rokid_webhook/__init__.py",
         "remote_location": "https://raw.githubusercontent.com/jihao/rokid-webhook-hass/master/custom_components/rokid_webhook/__init__.py",
         "visit_repo": "https://github.com/jihao/rokid-webhook-hass",
